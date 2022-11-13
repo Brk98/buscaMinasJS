@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./src/styles/main.css">
+    <title>Busca Minas</title>
+</head>
+<body>
+    <h1 class="mainTitle">Busca minas</h1>
+    <div class="menuInicializador">
+        <ul>
+            <li>
+                <span>Seleccione dificultad</span>
+                <span>
+                    <select name="difficulty" class="difficulty-select">
+                        <option value="8">8x8</option>
+                        <option value="16">16x16</option>
+                    </select>
+                </span>
+            </li>
+        </ul>
+    </div>
+    <div class="board">
+        <div class="sqare sqarenoTouch"></div>
+        <div class="sqare sqareClean"></div>
+        <div class="sqare sqareNumber">1</div>
+        <div class="sqare sqareBomb"></div>
+    </div>
+    <script src="./src/js/main.js" type="module"></script>
+    <script src="./src/js/logic.js" type="module"></script>
+    <script src="./src/js/visual.js" type="module"></script>
+</body>
+</html>

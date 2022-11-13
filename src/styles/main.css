@@ -1,0 +1,86 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html{
+    font-family: 'Sono', sans-serif;
+    font-size: 62.5%;
+}
+body{
+    font-size: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+h1.mainTitle{
+    margin-top: 1.5rem;
+    text-align: center;
+    font-size: 2.5rem;
+}
+ul{
+    list-style: none;
+}
+.menuInicializador{
+    width: 50%;
+    background-color: bisque;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+}
+.board{
+    margin-top: 1.5rem;
+    background-color: rgb(152, 186, 237);
+    padding: 0.5rem;
+    width: 80vh;
+    height: 80vh;
+}
+.sqare{
+    width: 100%;
+    height: 100%;
+    background-color: gray;
+}
+.sqarenoTouch:hover{
+    opacity: 0.5;
+    cursor: pointer;
+}
+.sqareClean{
+    background-color: lightgray;
+}
+.sqareNumber8{
+    text-align: center;
+    justify-content: center;
+    background-color: antiquewhite;
+    font-size: 5.5rem;
+}
+.sqareNumber16{
+    text-align: center;
+    justify-content: center;
+    background-color: antiquewhite;
+    font-size: 2.5rem;
+}
+.sqareBomb{
+    background-color: tomato;
+}
+.grid8{
+    display: grid;
+    /*Grid de 8x8*/
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: repeat(8, 1fr);
+    gap: 0.5rem;
+}
+.grid16{
+    display: grid;
+    /*Grid de 16x16*/
+    grid-template-columns: repeat(16, 1fr);
+    grid-template-rows: repeat(16, 1fr);
+    gap: 0.5rem;
+}
+.flag{
+    background-image: url('../img/flag.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
