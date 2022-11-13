@@ -1,3 +1,8 @@
+import { createBoard } from "./main.js";
+
+const textModal = document.querySelector('.modal-content p');
+const modal = document.querySelector('.modal');
+const levelOfMines = 0.15;
 //Clean and create a new matrix
 function crearMatriz(valor, matriz){
     matriz = [];
@@ -9,7 +14,7 @@ function crearMatriz(valor, matriz){
 //Fill the mines
 function fillMines(difficultySelect, matrix){
     //The total of sqares we have 10% of mines
-    let mines = difficultySelect * difficultySelect * 0.2; 
+    let mines = difficultySelect * difficultySelect * levelOfMines; 
     let minesPosition =[];
     for (let i = 0; i < mines; i++){
         let x;
@@ -50,4 +55,22 @@ function numberSquare(matrix, difficultySelect, minesPosition){
     return {matrix, minesPosition};
 }
 
-export {crearMatriz}
+function gameState(matriz, level){
+    const flags = document.querySelectorAll('.flag');
+    const square = document.querySelectorAll('.descubierto');
+    let flagsBomb = 0;
+    for(let i=0;i<flags.length;i++){
+        const position = flags[i].getAttribute('id').split(',');
+        if(matriz[position[0]][position[1]] == -1){
+            flagsBomb++;
+        }
+    }
+    const totalSquares = square.length + flags.length;
+    if(flags.length == flagsBomb && totalSquares == level*level){
+        setTimeout(()=>{
+            textModal.innerText = "Ganaste c:";
+            modal.classList.remove('hide');
+        },500)
+    }
+}
+export {crearMatriz, gameState}

@@ -1,14 +1,18 @@
-import { crearMatriz} from "./logic.js";
+import { crearMatriz, gameState} from "./logic.js";
 import { mineClicked, cleanClicked } from "./visual.js";
 /*Variables Logicas*/
 const difficultyLevel = ['grid8','grid16'];
 const sqareFont = ['sqareNumber8','sqareNumber16'];
+let clicked = 0;
 let matriz = [];
 let mines = [];
 /*Variables Visuales*/
 const btnStart = document.querySelector('.start');
 const difficultySelect = document.querySelector('.difficulty-select');
 const board = document.querySelector('.board');
+const modal = document.querySelector('.modal');
+const textModal = document.querySelector('.modal-content p');
+const closeModal = document.querySelector('.close');
 /*First Start*/
 createBoard();
 
@@ -19,12 +23,17 @@ difficultySelect.addEventListener('change',()=>{
 window.oncontextmenu = (e) => {
     e.preventDefault();
   }
+/*Close the modal */
+closeModal.addEventListener('click',()=>{
+    modal.classList.add('hide');
+    createBoard();
+})
 /*Create board*/
 function createBoard(){
+    clicked = 0;
     let variables =crearMatriz(difficultySelect.value);
     matriz = variables.matrix;
     mines = variables.minesPosition;
-    console.log(variables);
     board.classList.remove(difficultyLevel[1],difficultyLevel[0]);
     board.classList.remove(sqareFont[1],sqareFont[0]);
     board.classList.toggle(`grid${difficultySelect.value}`);
@@ -46,16 +55,27 @@ function addSqare(positionX, positionY){
             sqare.classList.add('sqareNumber','sqareClean');
             sqare.classList.add('opened');
         }else if(matriz[positionX][positionY] == -1){
-            mineClicked(mines, difficultySelect.value);
+            if(clicked==0){
+                createBoard();
+            }
+            else{
+                mineClicked(mines, difficultySelect.value);
+                setTimeout(()=>{
+                    textModal.innerText = "Perdiste :c";
+                    modal.classList.remove('hide');
+                },500)
+            }
         }
         else if(matriz[positionX][positionY] == 0){
 
             cleanClicked(positionX, positionY, matriz);
         }
-        
+        gameState(matriz, difficultySelect.value);
+        clicked++;
     })
     sqare.addEventListener('contextmenu', function(ev) {
         sqare.classList.toggle('flag');
+        gameState(matriz, difficultySelect.value);
         return false;
     }, false);
     return {sqare};
@@ -69,3 +89,5 @@ function fillBoard(difficulty){
         }
     }
 }
+
+export {createBoard};

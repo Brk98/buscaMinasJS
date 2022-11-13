@@ -2,7 +2,6 @@ const bomPosition = [];
 
 
 function mineClicked(mines, level){
-    console.log(mines);
     mines.map(function(mine){
         const sqareMine = document.getElementById(`${mine}`);
         sqareMine.classList.add('sqareBomb');
@@ -31,8 +30,6 @@ function cleanClicked(x,y, matriz){
         }
     }
 }
-
-
 
 
 export {mineClicked, cleanClicked};
